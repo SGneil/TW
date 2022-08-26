@@ -48,7 +48,7 @@ table {
 
 /* 導覽列 */
 ul {
-    width: 100%;
+    max-width: 100%;
     list-style-type: none;
     /* background-color: white; */
     background-color: #FFAF60;

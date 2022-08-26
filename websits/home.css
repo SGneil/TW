@@ -4,11 +4,16 @@
     box-sizing: border-box;
 }
 
+html {
+    height: auto;
+    width: auto;
+}
+
 body {
-    min-height: 100vh;
     background-image: linear-gradient(to bottom, #B15BFF, #FFBFFF, #FFF4C1, #FFAF60, #842B00);
     background-size: cover;
     overflow: hidden;
+    background-repeat: no-repeat;
 }
 
 /* 導覽列 */
