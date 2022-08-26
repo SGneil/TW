@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第三題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第三題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question2.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question4.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        從檔案(c.txt)讀入一算術運算式，計算並列印其結果。<br />
+                        (1)運算式包含+-*/四則算術運算<br />
+                        (2)輸入數字可能包含小數點<br />
+                        (3)不分+-*/一律由左而右依序計算<br />
+                        (4)運算式的最後結果依四捨五入後取整數值<br />
+                        以下幾個範例可供參考測試之：<br />
+                        <br />
+                        範例輸入一：<br />
+                        15*3/8*10/3=<br />
+                        範例輸出一：<br />
+                        15*3/8*10/3=19<br />
+                        範例輸入二：<br />
+                        6.53*5+3-8=<br />
+                        範例輸出二：<br />
+                        6.53*5+3-8=28<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        6.53*5+3-8=<br />
+                        範例輸出：<br />
+                        6.53*5+3-8=28<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        29.7*9+9/100=<br />
+                        範例輸出：<br />
+                        29.7*9+9/100=3<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        15/9.5+8*56=<br />
+                        範例輸出：<br />
+                        15/9.5+8*56=536<br />
+                        <br />
+                        (3)<br />
+                        範例輸入：<br />
+                        68*68.5/99/2=<br />
+                        範例輸出：<br />
+                        68*68.5/99/2=24<br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdlib.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">float</span> count_num<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">char</span> <span style="color:#808030; ">*</span>str<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>        <span style="color:#696969; ">// 把數字字串轉成小數存到sum變數中</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> meet_point <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">double</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> point <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'.'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            meet_point <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>meet_point <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            sum <span style="color:#808030; ">=</span> sum <span style="color:#808030; ">*</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'0'</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>meet_point <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            point <span style="color:#808030; ">/</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span><span style="color:#800080; ">;</span>
+            sum <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> point <span style="color:#808030; ">*</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'0'</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> sum<span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">201</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> str_temp<span style="color:#808030; ">[</span><span style="color:#008c00; ">201</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">*</span>str_tok<span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">strcpy</span><span style="color:#808030; ">(</span>str_temp<span style="color:#808030; ">,</span> str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>                  <span style="color:#696969; ">// strcpy()把str的字串複製存到str_tempp</span>
+
+    str_tok <span style="color:#808030; ">=</span> <span style="color:#603000; ">strtok</span><span style="color:#808030; ">(</span>str_temp<span style="color:#808030; ">,</span> <span style="color:#800000; ">"</span><span style="color:#0000e6; ">+-*/=</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>    <span style="color:#696969; ">// strtok()分割字串</span>
+    <span style="color:#800000; font-weight:bold; ">double</span> sum <span style="color:#808030; ">=</span> count_num<span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>        <span style="color:#696969; ">// 例如:15*3/8*10/3= 分割成15 3 8 10 3</span>
+
+    <span style="color:#800000; font-weight:bold; ">int</span> index <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">while</span> <span style="color:#808030; ">(</span>str_tok <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#7d0045; ">NULL</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>               <span style="color:#696969; ">// 分割到字串不能分割為止</span>
+        str_tok <span style="color:#808030; ">=</span> <span style="color:#603000; ">strtok</span><span style="color:#808030; ">(</span><span style="color:#7d0045; ">NULL</span><span style="color:#808030; ">,</span> <span style="color:#800000; ">"</span><span style="color:#0000e6; ">+-*/=</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+        <span style="color:#696969; ">// 判斷要 +  -  *  / 哪一個</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> index<span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'+'</span> <span style="color:#808030; ">|</span><span style="color:#808030; ">|</span> str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span> <span style="color:#808030; ">|</span><span style="color:#808030; ">|</span> str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'*'</span> <span style="color:#808030; ">|</span><span style="color:#808030; ">|</span> str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'/'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'+'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    sum <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> count_num<span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    sum <span style="color:#808030; ">-</span><span style="color:#808030; ">=</span> count_num<span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'/'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    sum <span style="color:#808030; ">/</span><span style="color:#808030; ">=</span> count_num<span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'*'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    sum <span style="color:#808030; ">*</span><span style="color:#808030; ">=</span> count_num<span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                index <span style="color:#808030; ">=</span> i <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+                <span style="color:#800000; font-weight:bold; ">break</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#007997; ">%.0f</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">,</span> sum<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+                                              
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

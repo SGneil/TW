@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二三題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二三題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question22.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question24.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <img style="width:720px" src="qt23.png" />
+                    <h4>
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        8<br />
+                        3*5*7*11*13*17*19*23<br />
+                        範例輸出：<br />
+                        8<br />
+                        3*5*7*11*13*17*19*23<br />
+                        2*6*6*10*14*18*18*22<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        10<br />
+                        3*5*7*11*13*17*19*23*29*31<br />
+                        範例輸出：<br />
+                        10<br />
+                        3*5*7*11*13*17*19*23*29*31<br />
+                        2*6*6*10*14*18*18*22*30*30<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        20<br />
+                        3*5*7*11*13*17*19*23*29*31*37*41*43*47*53*59*61*67*71*73<br />
+                        範例輸出：<br />
+                        20<br />
+                        3*5*7*11*13*17*19*23*29*31*37*41*43*47*53*59*61*67*71*73<br />
+                        2*6*6*10*14*18*18*22*30*30*38*42*42*46*54*58*62*66*70*74<br />
+                        <br />
+                        (3)<br />
+                        範例輸入：<br />
+                        15<br />
+                        3*5*7*11*13*17*19*23*29*31*37*41*43*47*53<br />
+                        範例輸出：<br />
+                        15<br />
+                        3*5*7*11*13*17*19*23*29*31*37*41*43*47*53<br />
+                        2*6*6*10*14*18*18*22*30*30*38*42*42*46*54<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdlib.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#696969; ">// 判斷是不是質數</span>
+<span style="color:#800000; font-weight:bold; ">int</span> is_prime<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> num<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>num <span style="color:#808030; ">%</span> i <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> num<span style="color:#808030; ">,</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 建立兩個動態陣列存放兩行的答案</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#808030; ">*</span>ans1 <span style="color:#808030; ">=</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#808030; ">*</span><span style="color:#808030; ">)</span><span style="color:#603000; ">malloc</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">sizeof</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">*</span> num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#808030; ">*</span>ans2 <span style="color:#808030; ">=</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#808030; ">*</span><span style="color:#808030; ">)</span><span style="color:#603000; ">malloc</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">sizeof</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">*</span> num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 把num數量的質數存到ans1陣列中</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">3</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">while</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> num<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>is_prime<span style="color:#808030; ">(</span>sum<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            ans1<span style="color:#808030; ">[</span>temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> sum<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        sum<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 找出最靠近分子且不為4的倍數的偶數，存到ans2陣列中</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">(</span>ans1<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">4</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            ans2<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> ans1<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            ans2<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> ans1<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans1<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> num <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans2<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> num <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

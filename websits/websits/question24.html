@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二四題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二四題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question23.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question25.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <img style="width:720px" src="qt24.png" />
+                    <h4>
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        12<br />
+                        25<br />
+                        範例輸出：<br />
+                        12<br />
+                        25<br />
+                        Ans=162703<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        9<br />
+                        11<br />
+                        範例輸出：<br />
+                        9<br />
+                        11<br />
+                        Ans=6505<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        11<br />
+                        22<br />
+                        範例輸出：<br />
+                        11<br />
+                        22<br />
+                        Ans=59810<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#696969; ">// 計算每次運算式的結果</span>
+<span style="color:#800000; font-weight:bold; ">double</span> count<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> x<span style="color:#808030; ">,</span> <span style="color:#800000; font-weight:bold; ">int</span> n<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 計算n次方</span>
+    <span style="color:#800000; font-weight:bold; ">double</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> n<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        sum <span style="color:#808030; ">*</span><span style="color:#808030; ">=</span> x<span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 計算n階層</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> n<span style="color:#800080; ">;</span> i <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        sum <span style="color:#808030; ">/</span><span style="color:#808030; ">=</span> i<span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> sum<span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> num1<span style="color:#808030; ">,</span> num2<span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">double</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num1<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num2<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 把每次運算式的結果加到sum</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> num2<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        sum <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> count<span style="color:#808030; ">(</span>num1<span style="color:#808030; ">,</span> i<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num1<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num2<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span><span style="color:#808030; ">)</span>sum<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

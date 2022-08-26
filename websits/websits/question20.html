@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二十題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二十題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question19.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question21.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        蓋倫是蒂瑪西亞學院裡資工系的助教，當同學把程式作業寫好送上來之後，除了要確認程式是否能夠成功執行之外，還要確認程式碼是否有抄襲。假設今天學生嘉文四世與學生拉克絲的程式碼相同，學生拉克絲與學生趙信的程式碼相同，那蓋倫就可以知8道說學生三人使用同一份程式碼當作業。你的任務就是要幫蓋倫找出抄襲同一份程式碼的學生數量，且學生數量要最多。<br />
+                        輸入說明 :<br />
+                        輸入兩列，第一列有兩個整數m, n ，代表有m 個同學(0 < m <= 14)且以英文字母A、B、C 表示)以及有n 組( 0 < n <= 30 )已經發現的抄襲作業。第二列為n 組已經發現的抄襲作業的資料，每組資料型式如(A,B)，代表A 同學和B 同學的作業相同。<br />
+                        <br />
+                        範例輸入：<br />
+                        3,3<br />
+                        (A,B)(A,C)(B,C)<br />
+                        範例輸出：<br />
+                        3,3<br />
+                        (A,B)(A,C)(B,C)<br />
+                        Ans=3<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        6,5<br />
+                        (A,B)(A,C)(B,D)(C,D)(E,F)<br />
+                        範例輸出：<br />
+                        6,5<br />
+                        (A,B)(A,C)(B,D)(C,D)(E,F)<br />
+                        Ans=4<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        12,8<br />
+                        (A,B)(C,E)(C,K)(A,I)(D,G)(D,H)(H,J)(D,L)<br />
+                        範例輸出：<br />
+                        12,8<br />
+                        (A,B)(C,E)(C,K)(A,I)(D,G)(D,H)(H,J)(D,L)<br />
+                        Ans=5<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        10,12<br />
+                        (A,B)(B,C)(B,D)(E,F)(F,G)(F,H)(F,I)(F,J)(G,H)(G,I)(G,J)(H,I)<br />
+                        範例輸出：<br />
+                        10,12<br />
+                        (A,B)(B,C)(B,D)(E,F)(F,G)(F,H)(F,I)(F,J)(G,H)(G,I)(G,J)(H,I)<br />
+                        Ans=6<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#696969; ">// 計算每組抄襲的人數</span>
+<span style="color:#800000; font-weight:bold; ">int</span> count<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">char</span> <span style="color:#808030; ">*</span>str<span style="color:#808030; ">,</span> <span style="color:#800000; font-weight:bold; ">int</span> index<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> temp<span style="color:#808030; ">[</span><span style="color:#008c00; ">15</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#008c00; ">15</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        temp<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 設定特定組為基準</span>
+    temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>index<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span><span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+    temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span><span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 找出抄襲特定組的學生</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> index<span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span> <span style="color:#808030; ">|</span><span style="color:#808030; ">|</span> temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>i <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span><span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+            temp<span style="color:#808030; ">[</span>str<span style="color:#808030; ">[</span>i <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'A'</span><span style="color:#808030; ">]</span><span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 計算抄襲特定組的人數</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#008c00; ">15</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            sum<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#800000; font-weight:bold; ">return</span> sum<span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> m<span style="color:#808030; ">,</span> n<span style="color:#808030; ">,</span> ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">151</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; ">,</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>m<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>n<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 把每組抄襲的第一個人的位置傳到count函式</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> count<span style="color:#808030; ">(</span>str<span style="color:#808030; ">,</span> i<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> ans<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            ans <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; ">,</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> m <span style="color:#808030; ">,</span>n<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

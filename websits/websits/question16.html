@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第十六題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第十六題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question15.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question17.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        儲蓄是一種美德，目前常見的儲蓄方式為定時存款，整筆領回，利率採每年複利的方式計算。例如：每年存 100000，存 3 年，若是複利率為 2.25%，3 年後的本利和如下：<br />
+                        第一年初存入 100000，本金=100000<br />
+                        第二年初，前一年本利=100000*(1+2.25%)=102250，加上存入的 100000，合計 202250<br />
+                        第三年初，前一年本利=202250*(1+2.25%)=206801，加上存入的 100000，合計 306801<br />
+                        第三年尾合計領回的本利和=306801*(1+2.25%)=313704<br />
+                        請寫一個程式從資料檔 a.txt 中讀入三行資料，第一行是每年存款的金額，第二行是存款年數，第三行是本利和，接著反算出存款複利率為何（請計算到小數點後兩位）。<br />
+                        <br />
+                        範例輸入:<br />
+                        100000<br />
+                        3<br />
+                        313704<br />
+                        範例輸出:<br />
+                        100000<br />
+                        3<br />
+                        313704<br />
+                        Ans=2.25%<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        36000<br />
+                        10<br />
+                        500000<br />
+                        範例輸出：<br />
+                        36000<br />
+                        10<br />
+                        500000<br />
+                        Ans=5.89%<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        36000<br />
+                        7<br />
+                        1000000<br />
+                        範例輸出：<br />
+                        36000<br />
+                        7<br />
+                        1000000<br />
+                        Ans=35.11%<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        36000<br />
+                        10<br />
+                        1000000<br />
+                        範例輸出：<br />
+                        36000<br />
+                        10<br />
+                        1000000<br />
+                        Ans=18.01%<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> save<span style="color:#808030; ">,</span> year<span style="color:#808030; ">,</span> total<span style="color:#808030; ">,</span> check <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> count<span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">double</span> ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>save<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>year<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>total<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 用不同複利率計算本金和，到與輸入的本金相同為止</span>
+    <span style="color:#800000; font-weight:bold; ">while</span> <span style="color:#808030; ">(</span>check <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> total<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> before_check <span style="color:#808030; ">=</span> check<span style="color:#800080; ">;</span>
+        ans <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008000; ">0.0001</span><span style="color:#800080; ">;</span>
+
+        <span style="color:#696969; ">// 計算本金和</span>
+        temp <span style="color:#808030; ">=</span> save<span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> year<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            temp <span style="color:#808030; ">=</span> temp <span style="color:#808030; ">*</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">1</span> <span style="color:#808030; ">+</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> year <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                temp <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> save<span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#696969; ">// 把本金和做四捨五入轉成整數存到check</span>
+        count <span style="color:#808030; ">=</span> temp <span style="color:#808030; ">*</span> <span style="color:#008c00; ">10</span><span style="color:#800080; ">;</span>
+        count <span style="color:#808030; ">%</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>count <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            check <span style="color:#808030; ">=</span> temp <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            check <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>check <span style="color:#808030; ">&gt;</span> total<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#696969; ">// 比較複利率誤差</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>check <span style="color:#808030; ">-</span> total <span style="color:#808030; ">&gt;</span> total <span style="color:#808030; ">-</span> before_check<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                ans <span style="color:#808030; ">-</span><span style="color:#808030; ">=</span> <span style="color:#008000; ">0.0001</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">break</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> save<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> year<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> total<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%.2lf</span><span style="color:#007997; ">%%</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans <span style="color:#808030; ">*</span> <span style="color:#008c00; ">100</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

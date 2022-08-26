@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二九題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二九題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question28.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question30.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        小明有一天拿到一份資料，是由 0 跟 1 組成的二維陣列，表示一個地圖上面有道路的地方，0 表示沒有馬路，1 表示有馬路，接著他想要找出最長的一條路，這條路只能是水平線，垂直線或者對角線，請撰寫一個程式來協助小明解決問題。<br />
+                        請從 e.txt 中先讀入寬與高(皆不會超過 30)，接著讀入這個二維陣列，然後輸出最長的一條路。<br />
+                        <br />
+                        範例輸入：<br />
+                        6 14<br />
+                        01001110001000<br />
+                        00100100010000<br />
+                        01110110111000<br />
+                        00001000000100<br />
+                        00000100001010<br />
+                        00111110010000<br />
+                        範例輸出：<br />
+                        6 14<br />
+                        01001110001000<br />
+                        00100100010000<br />
+                        01110110111000<br />
+                        00001000000100<br />
+                        00000100001010<br />
+                        00111110010000<br />
+                        Ans=6<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        6 14<br />
+                        01001110001000<br />
+                        00100100010000<br />
+                        01110110111000<br />
+                        00001000000100<br />
+                        00000100001010<br />
+                        00111110010000<br />
+                        範例輸出：<br />
+                        6 14<br />
+                        01001110001000<br />
+                        00100100010000<br />
+                        01110110111000<br />
+                        00001000000100<br />
+                        00000100001010<br />
+                        00111110010000<br />
+                        Ans=6<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        2 10<br />
+                        0011100000<br />
+                        0000111110<br />
+                        範例輸出：<br />
+                        2 10<br />
+                        0011100000<br />
+                        0000111110<br />
+                        Ans=5<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        10 20<br />
+                        00010000000001000000<br />
+                        00001000000000001000<br />
+                        00010101001110001000<br />
+                        00000000010000001000<br />
+                        00010010100000001000<br />
+                        00000000000011001000<br />
+                        00010100000100011000<br />
+                        00000001000000001000<br />
+                        00000100010000001000<br />
+                        00010001000010000000<br />
+                        範例輸出：<br />
+                        10 20<br />
+                        00010000000001000000<br />
+                        00001000000000001000<br />
+                        00010101001110001000<br />
+                        00000000010000001000<br />
+                        00010010100000001000<br />
+                        00000000000011001000<br />
+                        00010100000100011000<br />
+                        00000001000000001000<br />
+                        00000100010000001000<br />
+                        00010001000010000000<br />
+                        Ans=8<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> num1<span style="color:#808030; ">,</span> num2<span style="color:#808030; ">,</span> <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num1<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num2<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> arr<span style="color:#808030; ">[</span>num1<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>num2<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num2<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%1d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 找出水平線的最大值</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num2<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span><span style="color:#603000; ">max</span> <span style="color:#808030; ">&lt;</span> temp<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+                temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#603000; ">max</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 找出垂直線的最大值</span>
+    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num2<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>arr<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span><span style="color:#603000; ">max</span> <span style="color:#808030; ">&lt;</span> temp<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+                temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#603000; ">max</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 找出對角線的最大值(往右斜)</span>
+    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> num2 <span style="color:#808030; ">-</span> num1<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>arr<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>i <span style="color:#808030; ">+</span> j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+                temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#603000; ">max</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 找出對角線的最大值(往左斜)</span>
+    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> num2 <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> num1 <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>arr<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>i <span style="color:#808030; ">-</span> j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+                temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+                    temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#603000; ">max</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num1<span style="color:#808030; ">,</span> num2<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num1<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> num2<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #B15BFF, #FFBFFF, #FFF4C1, #FFAF60, #842B00);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+/* 內容 */
+table {
+    padding: 0px 20px 0px 20px;
+}
+
+.table_title {
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.menu {
+    font-size: 40px;
+    justify-content: center;
+}
+
+.display {
+    width: 50%;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 24px;
+    padding: 10px 10px 10px 10px;
+}
+
+.word {
+    width: 50%;
+    background-color: rgb(255, 235, 212);
+    font-size: 20px;
+    color: black;
+    border-radius: 24px;
+    padding: 10px 15px 10px 15px;
+}
+
+/* 導覽列 */
+ul {
+    max-width: 100%;
+    list-style-type: none;
+    /* background-color: white; */
+    background-color: #FFAF60;
+    overflow: hidden;
+}
+
+li {
+    float: right;
+}
+
+li input {
+    padding: 10px;
+    border: none;
+    /* background-color: white; */
+    color: white;
+    background-color: #FFAF60;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.touch:hover {
+    cursor: pointer;
+    /* background-color: #FFAF60; */
+    background-color: white;
+    /* color: white; */
+    color: black;
+}

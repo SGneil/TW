@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第三十題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第三十題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question29.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question31.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        <img style="width:720px" src="qt30.png" />
+                        <br />
+                        範例輸入：<br />
+                        2<br />
+                        1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 2<br />
+                        5 5 2 0 0 4 0 0 4 7 9 4 3 4 0 9 <br />
+                        範例輸出：<br />
+                        2<br />
+                        1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 2<br />
+                        5 5 2 0 0 4 0 0 4 7 9 4 3 4 0 9<br />
+                        Ans=valid invalid<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        2<br />
+                        1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 2<br />
+                        5 5 2 0 0 4 0 0 4 7 9 4 3 4 0 9 <br />
+                        範例輸出：<br />
+                        2<br />
+                        1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 2<br />
+                        5 5 2 0 0 4 0 0 4 7 9 4 3 4 0 9 <br />
+                        Ans=valid invalid<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        5<br />
+                        3 7 7 9 1 3 7 8 5 0 9 9 5 6 4<br />
+                        3 5 5 1 5 9 5 2 9 0 1 5 5 8 3<br />
+                        3 6 9 8 5 6 3 2 1 4 8 5 5 1 4<br />
+                        4 2 8 7 7 3 5 1 9 0 8 9 1 3 8 9<br />
+                        4 1 4 2 3 7 8 2 1 2 7 7 2 0 5 8<br />
+                        範例輸出：<br />
+                        5<br />
+                        3 7 7 9 1 3 7 8 5 0 9 9 5 6 4<br />
+                        3 5 5 1 5 9 5 2 9 0 1 5 5 8 3<br />
+                        3 6 9 8 5 6 3 2 1 4 8 5 5 1 4<br />
+                        4 2 8 7 7 3 5 1 9 0 8 9 1 3 8 9<br />
+                        4 1 4 2 3 7 8 2 1 2 7 7 2 0 5 8<br />
+                        Ans=valid valid invalid valid valid<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        3<br />
+                        5 8 2 3 1 8 5 9 3 4 8 1 2 3 8 5<br />
+                        5 2 0 1 8 9 0 2 3 1 4 1 5 4 6 4<br />
+                        2 1 5 6 7 5 6 2 1 3 7 8 6 1 0 5<br />
+                        範例輸出：<br />
+                        3<br />
+                        5 8 2 3 1 8 5 9 3 4 8 1 2 3 8 5<br />
+                        5 2 0 1 8 9 0 2 3 1 4 1 5 4 6 4<br />
+                        2 1 5 6 7 5 6 2 1 3 7 8 6 1 0 5<br />
+                        Ans=invalid valid invalid<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdlib.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> num<span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">50</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> arr<span style="color:#808030; ">[</span>num<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span><span style="color:#008c00; ">20</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> ans<span style="color:#808030; ">[</span>num<span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> len<span style="color:#808030; ">[</span>num<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 清除緩衝區</span>
+    <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 把資料讀到字串中</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'9'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'0'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> str<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'0'</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出部分答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>j <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#696969; ">// 這串是為了過第一個測試資料(正常不用加)</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>num <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> i <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP2 翻轉陣列</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+            arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> j <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+            arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> j <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP3 將偶數位乘2</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>j <span style="color:#808030; ">%</span> <span style="color:#008c00; ">2</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">*</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP4 將值全部加起來並存到ans陣列</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">int</span> sum <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                sum <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+                sum <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> arr<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+        ans<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> sum<span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP5 判斷卡號是否有效</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            ans<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            ans<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#808030; ">-</span><span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> num<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>ans<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">valid</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">invalid</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> num <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

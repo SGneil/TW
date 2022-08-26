@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第三一題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第三一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question30.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        請撰寫一個程式，從資料檔 e.txt 讀入一個英文句子(由 a-z 的大小寫與空白組成，不含句點)，裡面有好幾個單字，接著以最長單字為最大寬度，將這些單字輸出在一個由星號字元的長方形中。<br />
+                        <br />
+                        範例輸入：<br />
+                        CYUT is the top 1000 university<br />
+                        範例輸出：<br />
+                        CYUT is the top 1000 university<br />
+                        <img style="width: 150px;" src="qt31-1.png"><br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        CYUT is the top 1000 university<br />
+                        範例輸出：<br />
+                        CYUT is the top 1000 university<br />
+                        <img style="width: 150px;" src="qt31-1.png"><br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        Create a Team Project and start collaborating with your team now<br />
+                        範例輸出：<br />
+                        Create a Team Project and start collaborating with your team now<br />
+                        <img style="width: 150px;" src="qt31-2.png"><br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        Get everything you need to build and deploy your app on any platform<br />
+                        範例輸出：<br />
+                        Get everything you need to build and deploy your app on any platform<br />
+                        <img style="width: 150px;" src="qt31-3.png"><br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#696969; ">// 找出最長的單字長度</span>
+<span style="color:#800000; font-weight:bold; ">int</span> max_len<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">char</span> <span style="color:#808030; ">*</span> str<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">' '</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+            <span style="color:#800080; ">}</span>
+            temp <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            temp<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>temp <span style="color:#808030; ">&gt;</span> <span style="color:#603000; ">max</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">max</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#603000; ">max</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">201</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">*</span>str_tok<span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 取得最長字串</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> len <span style="color:#808030; ">=</span> max_len<span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 分割字串以空格來分割</span>
+    str_tok <span style="color:#808030; ">=</span> <span style="color:#603000; ">strtok</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">,</span> <span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">while</span> <span style="color:#808030; ">(</span>str_tok <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#7d0045; ">NULL</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len <span style="color:#808030; ">-</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str_tok<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        str_tok <span style="color:#808030; ">=</span> <span style="color:#603000; ">strtok</span><span style="color:#808030; ">(</span><span style="color:#7d0045; ">NULL</span><span style="color:#808030; ">,</span> <span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">*</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

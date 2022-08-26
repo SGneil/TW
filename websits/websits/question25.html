@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二五題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二五題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question24.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question26.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        雞兔同籠：有一個籠子裡裝了若干的雞和兔，數一數他們的頭，一共有 15 顆頭，數一數他們的腳，一共有 42 隻腳，請問雞和兔各有多少隻呢？透過簡單的代數計算可以得知雞有 9 隻，兔子有 6 隻，他們的腳一共是：9*2+6*4=18+24=42<br />
+                        請撰寫一個程式，可以從資料檔 e.txt 中讀入四個數字，分別表示第一種動物的腳數、第二種動物的腳數、頭的總數與腳的總數，然後輸出第一種動物的數目以及第二種動物的數目，若是解答不存在的話則輸出 No Solution。<br />
+                        <br />
+                        範例輸入一：（第一種動物 2 隻腳，第二種動物 4 隻腳，頭一共 15 個，腳一共 42 隻）<br />
+                        2 4 15 42<br />
+                        範例輸出一：<br />
+                        2 4 15 42<br />
+                        Ans=9 6<br />
+                        範例輸入二：（第一種動物 2 隻腳，第二種動物 4 隻腳，頭一共 10 個，腳一共 42 隻）<br />
+                        2 4 10 42<br />
+                        範例輸出二：（注意：No Solution 的字串請與題目說明完全一致，以避免驗證失敗）<br />
+                        2 4 10 42<br />
+                        Ans=No Solution<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        2 4 15 42<br />
+                        範例輸出：<br />
+                        2 4 15 42<br />
+                        Ans=9 6<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        2 4 10 42<br />
+                        範例輸出：<br />
+                        2 4 10 42<br />
+                        Ans=No Solution<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        4 8 1230 4999<br />
+                        範例輸出：<br />
+                        4 8 1230 4999<br />
+                        Ans=No Solution<br />
+                        <br />
+                        (3)<br />
+                        範例輸入：<br />
+                        3 4 88 300<br />
+                        範例輸出：<br />
+                        3 4 88 300<br />
+                        Ans=52 36<br />
+                        <br />
+                        (4)<br />
+                        範例輸入：<br />
+                        2 4 55 200<br />
+                        範例輸出：<br />
+                        2 4 55 200<br />
+                        Ans=10 45<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> x <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> y <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> foot1<span style="color:#808030; ">,</span> foot2<span style="color:#808030; ">,</span> total_head<span style="color:#808030; ">,</span> total_foot<span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>foot1<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>foot2<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>total_head<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>total_foot<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 計算是否有解，如果有解計算解為多少</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> total_head<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        x <span style="color:#808030; ">=</span> total_head <span style="color:#808030; ">-</span> i<span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>foot1 <span style="color:#808030; ">*</span> x <span style="color:#808030; ">+</span> foot2 <span style="color:#808030; ">*</span> y <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> total_foot<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">break</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            y<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 判斷是否有解，並印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> foot1<span style="color:#808030; ">,</span> foot2<span style="color:#808030; ">,</span> total_head<span style="color:#808030; ">,</span> total_foot<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>y <span style="color:#808030; ">&gt;</span> total_head<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=No Solution</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> x<span style="color:#808030; ">,</span> y<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>
