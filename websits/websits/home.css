@@ -11,6 +11,9 @@ html {
 
 body {
     background-image: linear-gradient(to bottom, #B15BFF, #FFBFFF, #FFF4C1, #FFAF60, #842B00);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
     overflow: hidden;
 }
