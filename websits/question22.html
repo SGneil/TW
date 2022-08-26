@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第二二題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第二二題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question21.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question23.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        排序：請針對 b.txt 中的資料進行排序，並依題意由大至小或由小至大將排序結果印出，排序方式不限，排序後的資料間以一個空白間格分隔。輸入檔說明：輸入檔中包含兩行文字，第一行的數字為 0 或 1。0 代表輸出結果由小至大排列，1 則代表輸出結果由大至小排列。第二行則包含欲排序的數字，每個數字均為整數，數字個數不超過 100 個，每個數字間以空白間隔。<br />
+                        <br />
+                        範例輸入：<br />
+                        0<br />
+                        3 2 5 7 8 1<br />
+                        範例輸出：<br />
+                        0<br />
+                        3 2 5 7 8 1<br />
+                        Ans=1 2 3 5 7 8<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        0<br />
+                        23 55 129 6 44 105 189 192 188 74 15 69 53 84 111<br />
+                        範例輸出：<br />
+                        0<br />
+                        23 55 129 6 44 105 189 192 188 74 15 69 53 84 111<br />
+                        Ans=6 15 23 44 53 55 69 74 84 105 111 129 188 189 192<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        0<br />
+                        578 43 237 653 442 1 356 78 95 67 35 26 14 216<br />
+                        範例輸出：<br />
+                        0<br />
+                        578 43 237 653 442 1 356 78 95 67 35 26 14 216<br />
+                        Ans=1 14 26 35 43 67 78 95 216 237 356 442 578 653<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        1<br />
+                        578 43 237 6743 442 1 356 4467 95 67 35 26 134 216 1024 2578 14 105 241 3561 101011 89 98 555 123<br />
+                        範例輸出：<br />
+                        1<br />
+                        578 43 237 6743 442 1 356 4467 95 67 35 26 134 216 1024 2578 14 105 241 3561 101011 89 98 555 123<br />
+                        Ans=101011 6743 4467 3561 2578 1024 578 555 442 356 241 237 216 134 123 105 98 95 89 67 43 35 26 14 1<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> num<span style="color:#808030; ">[</span><span style="color:#008c00; ">100</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> check<span style="color:#808030; ">,</span> len <span style="color:#808030; ">=</span> <span style="color:#808030; ">-</span><span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>check<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">while</span> <span style="color:#808030; ">(</span><span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>num<span style="color:#808030; ">[</span><span style="color:#808030; ">+</span><span style="color:#808030; ">+</span>len<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#7d0045; ">EOF</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 印出第一行跟第二行答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> check<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> len <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 排序</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>check <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#696969; ">// 由大到小</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> i <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span> num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+                    num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+                    num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>check <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#696969; ">// 由小到大</span>
+        <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> j <span style="color:#808030; ">=</span> i <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> j <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> j<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span> num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+                    <span style="color:#800000; font-weight:bold; ">int</span> temp <span style="color:#808030; ">=</span> num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+                    num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+                    num<span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> temp<span style="color:#800080; ">;</span>
+                <span style="color:#800080; ">}</span>
+            <span style="color:#800080; ">}</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 印出第三行答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> len<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> num<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> len <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; "> </span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第十三題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第十三題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question12.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question14.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        西元 2013 年的 1 月 1 日為星期二，請撰寫程式從資料檔 d.txt 讀入兩個數字(中間以空格區分)，分別代表哪一個月的哪一天，接著算出此日期在 2013 年中為星期幾，最後將星期幾以數字輸出，星期日為 0，星期一為 1，星期二為 2，以此類推。<br />
+                        <br />
+                        範例輸入一：<br />
+                        3 14<br />
+                        範例輸出一：<br />
+                        3 14<br />
+                        Ans=4<br />
+                        範例輸入二：<br />
+                        12 7<br />
+                        範例輸出二：<br />
+                        12 7<br />
+                        Ans=6<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        12 7<br />
+                        範例輸出：<br />
+                        12 7<br />
+                        Ans=6<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        2 15<br />
+                        範例輸出：<br />
+                        2 15<br />
+                        Ans=5<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        11 11<br />
+                        範例輸出：<br />
+                        11 11<br />
+                        Ans=1<br />
+                        <br />
+                        (3)<br />
+                        範例輸入：<br />
+                        10 27<br />
+                        範例輸出：<br />
+                        10 27<br />
+                        Ans=0<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> now_month<span style="color:#808030; ">,</span> now_day<span style="color:#808030; ">,</span> total_day <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">,</span> ans<span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">scanf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>now_month<span style="color:#808030; ">,</span> <span style="color:#808030; ">&amp;</span>now_day<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 計算總天數</span>
+    total_day <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> now_day<span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> now_month<span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            total_day <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">28</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>i <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">7</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            total_day <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">30</span> <span style="color:#808030; ">+</span> i <span style="color:#808030; ">%</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+            total_day <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#008c00; ">31</span> <span style="color:#808030; ">-</span> i <span style="color:#808030; ">%</span> <span style="color:#008c00; ">2</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; "> // 計算星期幾</span>
+    ans <span style="color:#808030; ">=</span> total_day <span style="color:#808030; ">%</span> <span style="color:#008c00; ">7</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 印出答案</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%d</span><span style="color:#0000e6; "> </span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> now_month<span style="color:#808030; ">,</span> now_day<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

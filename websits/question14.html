@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第十四題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第十四題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question13.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question15.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        身份證號碼的最後一碼為檢查碼，用於確認號碼是否正確，此檢查碼運算規則如下：<br />
+                        1. 英文代號先以下表轉換成數字<br />
+                        &nbsp&nbsp&nbspA=10 B=11 C=12 D=13 E=14 F=15 G=16 H=17 I=34<br />
+                        &nbsp&nbsp&nbspJ=18 K=19 L=20 M=21 N=22 O=35 P=23 Q=24 R=25<br />
+                        &nbsp&nbsp&nbspS=26 T=27 U=28 V=29 W=32 X=30 Y=31 Z=33<br />
+                        2. 英文轉成的數字，個位數乘 9 再加上十位數<br />
+                        3. 各數字從右到左依次乘 1,2,3,4,5,6,7,8<br />
+                        4. 計算上面兩項的總和，計算總和除 10 後之餘數，再用 10 減該餘數，結果就是檢查碼，若餘數為 0，檢查碼就是 0。<br />
+                        舉例來說：身分證號碼是 W100232736， 身份證號碼的前 9 個字元為 W10023273<br />
+                        &nbsp&nbsp&nbspW 1 0 0 2 3 2 7 3<br />
+                        &nbsp&nbsp&nbsp3 2<br />
+                        &nbsp&nbsp&nbsp* * * * * * * * * *<br />
+                        &nbsp&nbsp&nbsp1 9 8 7 6 5 4 3 2 1<br />
+                        &nbsp&nbsp&nbsp────────────────<br />
+                        &nbsp&nbsp&nbsp3+18+8+0+0+10+12+6+14+3=74<br />
+                        &nbsp&nbsp&nbsp74/10=7....4 (餘數)<br />
+                        &nbsp&nbsp&nbsp10-4=6 (檢查碼)<br />
+                        請撰寫一個程式從資料檔 c.txt 讀入一個身份證號碼的前 9 個字元，然後輸出檢查碼。<br />
+                        <br />
+                        範例輸入：<br />
+                        W10023273<br />
+                        範例輸出：<br />
+                        W10023273<br />
+                        Ans=W100232736<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        W10023273<br />
+                        範例輸出：<br />
+                        W100232736<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        N13323890<br />
+                        範例輸出：<br />
+                        N133238909<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        P29530008<br />
+                        範例輸出：<br />
+                        P29530008<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">201</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> ans<span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 把英文代號轉成數字STEP1、STEP2</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'A'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'H'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">55</span><span style="color:#800080; ">;</span>
+        ans <span style="color:#808030; ">=</span> ans <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'J'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'N'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">56</span><span style="color:#800080; ">;</span>
+        ans <span style="color:#808030; ">=</span> ans <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'P'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'V'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">57</span><span style="color:#800080; ">;</span>
+        ans <span style="color:#808030; ">=</span> ans <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&lt;</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'Y'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">58</span><span style="color:#800080; ">;</span>
+        ans <span style="color:#808030; ">=</span> ans <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'I'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">34</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">34</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'O'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">35</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">35</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'W'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">32</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">32</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span><span style="color:#008c00; ">0</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'Z'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">33</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">+</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">33</span> <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">*</span> <span style="color:#008c00; ">9</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP3</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        ans <span style="color:#808030; ">+</span><span style="color:#808030; ">=</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">-</span> <span style="color:#0000e6; ">'0'</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">*</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">9</span> <span style="color:#808030; ">-</span> i<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// STEP4</span>
+    ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span> <span style="color:#808030; ">-</span> <span style="color:#808030; ">(</span>ans <span style="color:#808030; ">%</span> <span style="color:#008c00; ">10</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#696969; ">// 印出答案(這題輸出格式跟考古題的不一樣)</span>
+    <span style="color:#696969; ">// printf("%s\n", str);</span>
+    <span style="color:#696969; ">// printf("Ans=%s%d\n", str, ans);</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">,</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

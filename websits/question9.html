@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>朝陽資工程檢參考範例-第九題</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <nav>    
+            <ul>
+                <li>
+                    <form action="page.html">
+                        <input class="touch" type="submit" value="目錄" />
+                    </form>
+                </li>
+                <li >
+                    <form  action="https://csie.cyut.edu.tw/p/405-1044-11629,c811.php?Lang=zh-tw">
+                        <input class="touch" type="submit" value="朝陽資工程檢練習平台" />
+                    </form>
+                </li>
+                <li>
+                    <form action="home.html">
+                        <input class="touch" type="submit" value="首頁HOME" />
+                    </form>
+                </li>
+                <li style="float: left; padding-right: 100px;">
+                    <form>
+                        <input type="submit" value="朝陽資工程檢參考範例 - 第九題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question8.html">
+                        <input class="touch" type="submit" value="上一題" />
+                    </form>
+                </li>
+                <li style="float: left;">
+                    <form action="question10.html">
+                        <input class="touch" type="submit" value="下一題" />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <table>
+            <tr>
+                <td class="table_title">題目</td>
+                <td class="table_title">程式碼</td>
+            </tr>
+
+            <tr>
+                <td class="display" valign="top">
+                    <h4>
+                        恐怖份子在一條巷子中放入了好幾顆炸彈，炸彈有分小炸彈與大炸彈，請計算這條巷子在所有炸彈引爆後，還有那些地方是安全的。這裡假設巷子以一連串的 0 來表示，小 x表示小炸彈，爆炸範圍是 1(會炸到左右各一個 0)，大 X 是大炸彈，爆炸範圍是 2(會炸到左右各 2 個 0)，請從 d.txt 中讀入一串由 0, x, X 組成的字串(最長 80 個字元)，接著輸出炸彈爆炸後還剩下幾個 0。<br />
+                        <br />
+                        範例輸入一：<br />
+                        00x00000X0xX0000x<br />
+                        <br />
+                        上面的炸彈爆炸後的結果為:<br />
+                        0---00--------0--<br />
+                        剩下 4 個 0<br />
+                        <br />
+                        範例輸出一：<br />
+                        00x00000X0xX0000x<br />
+                        Ans=4<br />
+                        <br />
+                        (0)<br />
+                        範例輸入：<br />
+                        00x00000X0xX0000x<br />
+                        範例輸出：<br />
+                        00x00000X0xX0000x<br />
+                        Ans=4<br />
+                        <br />
+                        (1)<br />
+                        範例輸入：<br />
+                        0x0<br />
+                        範例輸出：<br />
+                        0x0<br />
+                        Ans=0<br />
+                        <br />
+                        (2)<br />
+                        範例輸入：<br />
+                        000000000000000000000000000000<br />
+                        範例輸出：<br />
+                        000000000000000000000000000000<br />
+                        Ans=30<br />
+                        <br />
+                    </h4>
+                </td>
+                <td class="word" valign="top">
+
+<pre style="color:#000000;"><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">stdio.h</span><span style="color:#800000; ">&gt;</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">&lt;</span><span style="color:#40015a; ">string.h</span><span style="color:#800000; ">&gt;</span>
+
+<span style="color:#800000; font-weight:bold; ">void</span> meet_x<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">char</span> <span style="color:#808030; ">*</span> str<span style="color:#808030; ">,</span> <span style="color:#800000; font-weight:bold; ">int</span> index<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 遇到小炸彈</span>
+    str<span style="color:#808030; ">[</span>index<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'x'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>   <span style="color:#696969; ">// 不要炸掉之後的炸彈</span>
+            str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">void</span> meet_X<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">char</span> <span style="color:#808030; ">*</span> str<span style="color:#808030; ">,</span> <span style="color:#800000; font-weight:bold; ">int</span> index<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 遇到大炸彈</span>
+    str<span style="color:#808030; ">[</span>index<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&gt;</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+        str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">-</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>    <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'x'</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>   <span style="color:#696969; ">// 不要炸掉炸彈之後的炸彈</span>
+            str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">2</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>index <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span> <span style="color:#808030; ">-</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span> <span style="color:#696969; ">// 確認炸掉的範圍有沒有超出索引值</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            str<span style="color:#808030; ">[</span>index <span style="color:#808030; ">+</span> <span style="color:#008c00; ">1</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'-'</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+<span style="color:#800080; ">}</span>
+
+<span style="color:#800000; font-weight:bold; ">int</span> <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">void</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">char</span> str<span style="color:#808030; ">[</span><span style="color:#008c00; ">81</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>       <span style="color:#696969; ">// 讀入輸入資料</span>
+    <span style="color:#603000; ">gets</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#007997; ">%s</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'x'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            meet_x<span style="color:#808030; ">(</span>str<span style="color:#808030; ">,</span> i<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+        <span style="color:#800000; font-weight:bold; ">else</span> <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'X'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            meet_X<span style="color:#808030; ">(</span>str<span style="color:#808030; ">,</span> i<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+
+    <span style="color:#696969; ">// 計算有幾個0</span>
+    <span style="color:#800000; font-weight:bold; ">int</span> ans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">int</span> i <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span> i <span style="color:#808030; ">&lt;</span> <span style="color:#603000; ">strlen</span><span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> i<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>str<span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#0000e6; ">'0'</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+            ans<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span><span style="color:#800080; ">;</span>
+        <span style="color:#800080; ">}</span>
+    <span style="color:#800080; ">}</span>
+    <span style="color:#603000; ">printf</span><span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">Ans=</span><span style="color:#007997; ">%d</span><span style="color:#0f69ff; ">\n</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> ans<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span><span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+</pre>
+                        
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>
