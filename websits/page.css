@@ -2,19 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+}
+
+html {
+    height: 100vh;
 }
 
 body {
-    min-height: 100vh;
     background-image: linear-gradient(to bottom, #B15BFF, #FFBFFF, #FFF4C1, #FFAF60, #842B00);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
     overflow: hidden;
 }
 
-
-
 /* 導覽列 */
 ul {
+    width: 100vw;
     list-style-type: none;
     background-color: white;
     overflow: hidden;

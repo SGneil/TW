@@ -5,9 +5,10 @@
 }
 
 body {
-    font-family: Roboto;
-    background-attachment: fixed;
     background-image: linear-gradient(to bottom, #B15BFF, #FFBFFF, #FFF4C1, #FFAF60, #842B00);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
 }
 
@@ -47,6 +48,7 @@ table {
 
 /* 導覽列 */
 ul {
+    width: 100%;
     list-style-type: none;
     /* background-color: white; */
     background-color: #FFAF60;

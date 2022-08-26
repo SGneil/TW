@@ -13,6 +13,7 @@ body {
 
 /* 導覽列 */
 ul {
+    width: 100vw;
     list-style-type: none;
     background-color: white;
     overflow: hidden;
